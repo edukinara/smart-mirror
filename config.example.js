@@ -80,7 +80,8 @@ var config = {
     calendar: {
       icals : [], // Be sure to wrap your URLs in quotes
       maxResults: 9, // Number of calender events to display (Defaults is 9)
-      maxDays: 365 // Number of days to display (Default is one year)
+      maxDays: 365, // Number of days to display (Default is one year)
+      showCalendarNames: false // Show calendar names above events
     },
     // Giphy
     giphy: {
@@ -111,6 +112,9 @@ var config = {
     rss: {
       feeds : [],  // RSS feeds list - e.g. ["rss1.com", "rss2.com"]
       refreshInterval : 120 // Number of minutes the information is refreshed
+    },
+    stock: {
+      names: [] // The names of the stock quotes you with to show in the official format. (e.g.: 'YHOO','AAPL','GOOG')
     },
     autoTimer: {
       autoSleep: 2400000, // How long the screen will stay awake before going to sleep (40 Mins)
