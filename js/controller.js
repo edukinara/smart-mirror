@@ -43,6 +43,8 @@
           (typeof config.language !== 'undefined')?config.language.substring(0, 2).toLowerCase(): 'en',
           {
             calendar : {
+              lastWeek : '[Last] dddd',
+              lastDay : '[Yesterday]',
               sameDay : '[Today]',
               nextDay : '[Tomorrow]',
               nextWeek : 'dddd',
@@ -129,7 +131,7 @@
             };
 
             if($scope.fitbitEnabled){
-                registerRefreshInterval(refreshFitbitData, 5);
+                registerRefreshInterval(refreshFitbitData, 60);
             }
 
             var refreshWeatherData = function() {
@@ -223,7 +225,10 @@
             var refreshRss = function () {
                 console.log ("Refreshing RSS");
                 $scope.news = null;
-                RssService.refreshRssList();
+                RssService.refreshRssList().then(function() {
+                  $scope.news = RssService.getNews();
+                });
+
             };
 
             var updateNews = function() {
@@ -425,7 +430,7 @@
 
             //Show fitbit stats (registered only if fitbit is configured in the main config)
             if ($scope.fitbitEnabled) {
-                SpeechService.addCommand('show my walking', function() {
+                addCommand('show_my_walking', function() {
                     refreshFitbitData();
                 });
             }
